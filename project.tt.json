@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "qc-taro-use",
+  "appid": "testAppId",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
