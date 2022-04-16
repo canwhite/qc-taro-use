@@ -1,6 +1,8 @@
 import React,{ Component } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text ,Button } from '@tarojs/components'
 import './index.scss'
+import { navigateTo } from '@tarojs/router' 
+import Taro from '@tarojs/taro'
 
 export default class Index extends Component {
   constructor(props){
@@ -22,7 +24,7 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-  //加一个handleChange的方法
+  //受控组价测试
   handleChange(e) {
     //受控
     this.setState({
@@ -30,10 +32,28 @@ export default class Index extends Component {
     })  
   } 
 
-  //handleClick
+  //非受控组件测试
   handleClick = ()=>{
     // this.txt.current.focus()
-    console.log("txt",this.txt.current.value);
+    console.log("==",this.txt.current.value);
+
+    /* Taro.request({
+      url,
+      data: method === 'POST' ? JSON.stringify(data) : data,
+      method,
+      header: { 'Content-Type': 'application/json' }
+    }) */
+  }
+
+
+
+
+  //跳转到其他组件
+  handleRouterChange = () => {
+    //我们测试一下跳转
+    Taro.navigateTo({
+      url: '/pages/helper/index'
+    })
   }
 
   render () {
@@ -48,6 +68,12 @@ export default class Index extends Component {
           <input ref={this.txt} placeholder='非受控组件' />
           <button style={{marginLeft:5}} onClick={this.handleClick}>输出</button>
         </p>
+        {/* 引入一下taro UI，在这里使用一个Button */}
+        <Button type='primary' onClick={this.handleRouterChange}>
+          helper跳转
+        </Button>
+
+
       </View>
     )
   }
